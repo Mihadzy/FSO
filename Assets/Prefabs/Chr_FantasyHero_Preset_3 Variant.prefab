@@ -45,7 +45,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &6837361395012155476
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.8612535
+  m_Height: 1.86
   m_Direction: 1
   m_Center: {x: 0, y: 0.9097072, z: 0}
 --- !u!114 &4611987867799241710
@@ -414,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1782384603142300, guid: 32eb347f03c37014080d0c1fba9fae61, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Chr_FantasyHero_Preset_3 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1782384603142300, guid: 32eb347f03c37014080d0c1fba9fae61, type: 3}
       propertyPath: m_TagString

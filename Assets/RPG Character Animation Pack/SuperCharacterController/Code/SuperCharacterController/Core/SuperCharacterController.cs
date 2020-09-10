@@ -639,6 +639,7 @@ public class SuperCharacterController : MonoBehaviour
                         else
                         {
                             // Uh oh
+                            Debug.LogWarning("Uh oh");
                         }
                     }
                 }

@@ -21,7 +21,7 @@ namespace RPGCharacterAnims
     {
         //Components.
         [HideInInspector] public UnityEngine.AI.NavMeshAgent navMeshAgent;
-        private SuperCharacterController superCharacterController;
+        private NewSuperCharacterController superCharacterController;
         private RPGCharacterController rpgCharacterController;
         private RPGCharacterInputController rpgCharacterInputController;
         private Rigidbody rb;
@@ -71,7 +71,7 @@ namespace RPGCharacterAnims
 
         private void Awake()
         {
-            superCharacterController = GetComponent<SuperCharacterController>();
+            superCharacterController = GetComponent<NewSuperCharacterController>();
             rpgCharacterController = GetComponent<RPGCharacterController>();
             rpgCharacterInputController = GetComponent<RPGCharacterInputController>();
             navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -174,12 +174,12 @@ namespace RPGCharacterAnims
 
         private bool AcquiringGround()
         {
-            return superCharacterController.currentGround.IsGrounded(false, 0.01f);
+            return superCharacterController.IsGrounded(false, 0.01f);
         }
 
         public bool MaintainingGround()
         {
-            return superCharacterController.currentGround.IsGrounded(true, 0.5f);
+            return superCharacterController.IsGrounded(true, 0.5f);
         }
 
         public void RotateGravity(Vector3 up)
@@ -212,8 +212,8 @@ namespace RPGCharacterAnims
         //Below are the state functions. Each one is called based on the name of the state, so when currentState = Idle, we call Idle_EnterState. If currentState = Jump, we call Jump_SuperUpdate()
         private void Idle_EnterState()
         {
-            superCharacterController.EnableSlopeLimit();
-            superCharacterController.EnableClamping();
+            /*superCharacterController.EnableSlopeLimit();
+            superCharacterController.EnableClamping();*/
             canJump = true;
             doublejumped = false;
             canDoubleJump = false;
@@ -228,6 +228,7 @@ namespace RPGCharacterAnims
             {
                 currentState = RPGCharacterState.Jump;
                 rpgCharacterState = RPGCharacterState.Jump;
+                Debug.Log("1as234");
                 return;
             }
             if(!MaintainingGround())
@@ -306,8 +307,8 @@ namespace RPGCharacterAnims
 
         private void Jump_EnterState()
         {
-            superCharacterController.DisableClamping();
-            superCharacterController.DisableSlopeLimit();
+            /*superCharacterController.DisableClamping();
+            superCharacterController.DisableSlopeLimit();*/
             currentVelocity += superCharacterController.up * CalculateJumpSpeed(jumpHeight, gravity);
             //Set weaponstate to Unarmed if Relaxed.
             if(rpgCharacterController.weapon == Weapon.RELAX)
@@ -374,8 +375,8 @@ namespace RPGCharacterAnims
             {
                 canDoubleJump = true;
             }
-            superCharacterController.DisableClamping();
-            superCharacterController.DisableSlopeLimit();
+            /*superCharacterController.DisableClamping();
+            superCharacterController.DisableSlopeLimit();*/
             canJump = false;
             animator.SetInteger("Jumping", 2);
             animator.SetTrigger("JumpTrigger");
@@ -396,8 +397,8 @@ namespace RPGCharacterAnims
 
         private void Swim_EnterState()
         {
-            superCharacterController.DisableClamping();
-            superCharacterController.DisableSlopeLimit();
+            /*superCharacterController.DisableClamping();
+            superCharacterController.DisableSlopeLimit();*/
             animator.SetBool("Strafing", false);
             rpgCharacterController.isStrafing = false;
             animator.SetBool("Aiming", false);
